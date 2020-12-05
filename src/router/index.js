@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 const Notice = () => import('views/notice/Notice')
+const Show = () => import('views/notice/Show')
+const AddNotice = () => import('views/notice/AddNotice')
 const Clothing = () => import('views/clothing/Clothing')
 const Order = () => import('views/order/Order')
 const Post = () => import('views/post/Post')
@@ -17,7 +19,21 @@ const routes = [
   },
   {
     path:'/notice',
-    component:Notice
+    component:Notice,
+    children:[
+      {
+        path:'',
+        redirect:'/notice/show'
+      },
+      {
+        path:'show',
+        component:Show
+      },
+      {
+        path:'addNotice',
+        component:AddNotice
+      }
+    ]
   },
   {
     path:'/clothing',

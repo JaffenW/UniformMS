@@ -11,4 +11,11 @@ function deleteNotice(noticeId){
         method:"delete"
     })
 }
-export {findAllNotices,deleteNotice}
+function saveNotice(data){
+    return request({
+        url:"/announcement/saveAnnouncement",
+        method:'post',
+        data
+    })
+}
+export {findAllNotices,deleteNotice,saveNotice}
