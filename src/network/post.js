@@ -11,4 +11,11 @@ function deletePost(postId){
         method:"delete"
     })
 }
-export {findAllPosts,deletePost}
+function addPost(data){
+    return request({
+        url:"/post/addPost",
+        method:"post",
+        data
+    })
+}
+export {findAllPosts,deletePost,addPost}

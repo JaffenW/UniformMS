@@ -1,110 +1,34 @@
 <template>
   <div>
-    <el-table :data="users" stripe style="width: 100%">
-      <el-table-column
-        prop="userId"
-        label="账户"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        prop="password"
-        label="密码"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        prop="userName"
-        label="姓名"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        prop="role"
-        label="角色"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        prop="height"
-        label="身高"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        prop="weight"
-        label="体重"
-        width="203">
-      </el-table-column>
-      <el-table-column
-        label="操作"
-        width="203">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" @click.native.prevent="deleteU(scope.row.userId)">
-            删除
-          </el-button>
-        </template>
-        
-      </el-table-column>
-    </el-table>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :page-size="4"
-      :total=total
-      @current-change="page">
-    </el-pagination>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" 
+      background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu-item index="/user/show" index-path="/notice/show">用户列表</el-menu-item>
+        <el-menu-item index="/user/addUser" >添加用户</el-menu-item>
+    </el-menu>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import {findAllUser,deleteUser} from "network/user";
-
 export default {
   data () {
     return {
-      users:[],
-      total:null
+      activeIndex: '/user/show',
     };
   },
   methods: {
-      deleteRow(index, rows) {
-        rows.splice(index, 1);
-      },
-      page(currentPage){
-        findAllUser(currentPage).then(res => {
-        this.users = res.content;
-        this.total = res.totalElements;
-        })
-      },
-      deleteU(userId) {
-        console.log("hello");
-          this.$confirm('你是否要删除Id为'+userId+'的用户?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }).then(() => {
-            console.log(userId)
-            deleteUser(userId).then(res => {
-              console.log(res)
-              this.$message({
-              type: 'success',
-              message: '删除成功!'
-              });
-          }) 
-          }).catch((error) => {
-            console.log(error)
-            this.$message({
-              type: 'info',
-              message: '已取消删除'
-            });          
-          });
-        }
+      handleSelect(key, keyPath) {
+        this.$router.push(key);
+      }
     },
   
-  created(){
-    findAllUser(1).then(res => {
-      this.users = res.content;
-      this.total = res.totalElements;
-    })
-  },
 }
 </script>
 
 <style scoped>
+  .el-menu-demo{
+    text-align: center;
+    width:92.45vw;
+    
+  }
 </style>

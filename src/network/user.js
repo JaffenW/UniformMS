@@ -11,4 +11,11 @@ function deleteUser(userId){
         method:"delete"
     })
 }
-export {findAllUser,deleteUser}
+function addUser(data){
+    return request({
+        url:"/user/saveUser",
+        method:"post",
+        data
+    })
+}
+export {findAllUser,deleteUser,addUser}

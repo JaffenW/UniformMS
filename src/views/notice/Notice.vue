@@ -34,7 +34,7 @@ export default {
 <style scoped>
   .el-menu-demo{
     text-align: center;
-    width:100vw;
+    width:92.45vw;
     
   }
 </style>

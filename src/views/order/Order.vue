@@ -1,120 +1,36 @@
 <template>
   <div>
-    <el-table :data="orders" stripe style="width: 100%">
-      <el-table-column
-        prop="orderId"
-        label="订单编号"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="cid"
-        label="服装编号"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="owner"
-        label="出租人"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="renter"
-        label="租借人"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="订单日期"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="time"
-        label="租借天数"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="origin"
-        label="发货地"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="destination"
-        label="收货地"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="deposit"
-        label="押金"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        label="操作"
-        width="140">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" @click.native.prevent="deleteOrder(scope.row.orderId)">
-            删除
-          </el-button>
-        </template>
-        
-      </el-table-column>
-    </el-table>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :page-size="4"
-      :total=total
-      @current-change="page">
-    </el-pagination>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" 
+      background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu-item index="/order/show" index-path="/notice/show">订单列表</el-menu-item>
+        <el-menu-item index="/order/addOrder" >添加订单</el-menu-item>
+    </el-menu>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import {findAllOrder,deleteOrder} from "network/order";
-
 export default {
   data () {
     return {
       orders:[],
       total:null,
+      activeIndex: '/order/show',
     };
   },
-  methods:{
-    page(currentPage){
-      findAllOrder(currentPage).then(res => {
-      this.orders = res.content;
-    })
-    },
-    deleteOrder(orderId) {
-        this.$confirm('你是否要删除Id为'+orderId+'的服装?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          deleteOrder(orderId).then(res => {
-            console.log(res);
-            this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-          window.location.reload;
-          console.log(res);
-        }) 
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
+  methods: {
+      handleSelect(key, keyPath) {
+        this.$router.push(key);
       }
-  },
+    },
   
-  created(){
-    findAllOrder(1).then(res => {
-      this.orders = res.content;
-      this.total = res.totalElements;
-    })
-  },
 }
 </script>
 
 <style scoped>
+  .el-menu-demo{
+    text-align: center;
+    width:92.45vw;
+    
+  }
 </style>

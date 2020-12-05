@@ -11,4 +11,11 @@ function deleteOrder(orderId){
         method:"delete",
     })
 }
-export {findAllOrder,deleteOrder}
+function addOrder(data){
+    return request({
+        url:"/order/saveOrder",
+        method:"post",
+        data
+    })
+}
+export {findAllOrder,deleteOrder,addOrder}

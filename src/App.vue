@@ -39,19 +39,20 @@ export default {
     height:100vh;
   }
   .header{
-    line-height: 5vh;
-    font-size: 20px;
+    line-height: 7vh;
+    font-size: 22px;
     text-align: center;
     letter-spacing: 1px;
     border-bottom: #eeeeee 1px solid;
   }
   .aside{
     float: left;
-    height: 95vh;
+    height: 92vh;
     width: 15vh;
     border-right: solid 1px #eeeeee;
   }
   .router-view{
     display: flex;
+    width: 80vw ;
   }
 </style>

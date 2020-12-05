@@ -11,5 +11,11 @@ function deleteClothing(clothesId){
         url:"/clothing/deleteClothing/"+clothesId
     })
 }
+function addClothing(data){
+    return request({
+        url:"/clothing/addClothing?belong="+data.belong+"&description="+data.description+"&rent="+data.rent+"&type="+data.type,
+        method:"post"
+    })
+}
 
-export {findAllClothes,deleteClothing}
+export {findAllClothes,deleteClothing,addClothing}

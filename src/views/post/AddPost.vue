@@ -1,10 +1,13 @@
 <template>
-  <el-form class="el-form" ref="form" :model="notice" label-width="500px" label-position="auto">
-    <el-form-item class="item-title" label="标题">
-      <el-input v-model="notice.title"></el-input>
+  <el-form class="el-form" ref="form" :model="post" label-width="500px" label-position="auto">
+    <el-form-item label="帖子标题">
+      <el-input v-model="post.title"></el-input>
     </el-form-item>
     <el-form-item  label="内容">
-      <el-input type="textarea" v-model="notice.content"  class="item-content"></el-input>
+      <el-input type="textarea" v-model="post.content"></el-input>
+    </el-form-item>
+    <el-form-item label="发帖人">
+      <el-input v-model="post.uid"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -14,26 +17,27 @@
 </template>
 
 <script>
-  import {saveNotice} from "network/notice"
+  import {addPost} from "network/post"
   export default {
     data() {
       return {
-        notice: {
+        post: {
           title: '',
-          content: '',
+          content:'',
+          uid:''
         }
       }
     },
     methods: {
       onSubmit() {
-        saveNotice(this.notice).then(res =>{
+        addPost(this.post).then(res =>{
           console.log(res);
           this.$message({
             type: 'success',
             message: '添加成功!'
           });
         })
-        console.log(this.notice);
+        console.log(this.post);
       }
     }
   }
@@ -43,10 +47,6 @@
 <style scoped>
 .el-form{
   width: 50vw;
-  margin-top:100px
+  margin-top:50px
 }
-.item-title{
-  margin-top:30px
-}
-
 </style>

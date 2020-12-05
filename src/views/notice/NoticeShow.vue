@@ -4,29 +4,29 @@
             <el-table-column
                 prop="announcementId"
                 label="公告编号"
-                width="237">
+                width="284">
             </el-table-column>
             <el-table-column
                 prop="title"
                 label="公告标题"
-                width="237">
+                width="284">
             </el-table-column>
             <el-table-column
                 prop="content"
                 label="内容"
-                width="237">
+                width="284">
             </el-table-column>
             <el-table-column
                 prop="date"
                 label="发布日期"
-                width="237">
+                width="284">
             </el-table-column>
             <el-table-column
                 label="操作"
-                width="237">
+                width="286">
                 <template slot-scope="scope">
-                <el-button type="text" size="small" @click.native.prevent="deletePost(scope.row.announcementId)">
-                查看
+                <el-button type="text" size="small" @click.native.prevent="aditPost(scope.row.announcementId)">
+                编辑
                 </el-button>
                 <el-button type="text" size="small" @click.native.prevent="deletePost(scope.row.announcementId)">
                     删除
@@ -75,11 +75,13 @@ export default {
       page(currentPage){
         findAllNotices(currentPage).then(res => {
           this.notices = res.content;
-    })
-    },
+        })
+      },
+      aditPost(noticeId){
+        
+      }
   },
   created(){
-    console.log("chuangjian1");
     findAllNotices(1).then(res => {
       this.notices = res.content;
       this.total = res.totalElements;
