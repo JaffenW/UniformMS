@@ -2,7 +2,12 @@ import {request} from "./request";
 
 function findAllNotices(page){
     return request({
-        url:"/announcement/findAllAnnouncement/"+page+"/4"
+        url:"/announcement/findAllAnnouncement/"+page+"/9"
+    })
+}
+function findNotice(noticeId){
+    return request({
+        url:"/announcement/findAnnouncement/"+noticeId
     })
 }
 function deleteNotice(noticeId){
@@ -18,4 +23,4 @@ function saveNotice(data){
         data
     })
 }
-export {findAllNotices,deleteNotice,saveNotice}
+export {findAllNotices,findNotice,deleteNotice,saveNotice}

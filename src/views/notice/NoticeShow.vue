@@ -4,37 +4,39 @@
             <el-table-column
                 prop="announcementId"
                 label="公告编号"
-                width="284">
+                width="224">
             </el-table-column>
             <el-table-column
                 prop="title"
                 label="公告标题"
-                width="284">
+                width="244">
             </el-table-column>
             <el-table-column
                 prop="content"
                 label="内容"
-                width="284">
+                width="344">
             </el-table-column>
             <el-table-column
                 prop="date"
                 label="发布日期"
-                width="284">
+                width="324">
             </el-table-column>
             <el-table-column
                 label="操作"
                 width="286">
                 <template slot-scope="scope">
-                <el-button type="text" size="small" @click.native.prevent="aditPost(scope.row.announcementId)">
+                <el-button size="small" @click.native.prevent="aditPost(scope.row.announcementId)">
+                  <i class="el-icon-edit"></i>
                 编辑
                 </el-button>
-                <el-button type="text" size="small" @click.native.prevent="deletePost(scope.row.announcementId)">
+                <el-button type="danger" size="small" @click.native.prevent="deletePost(scope.row.announcementId)">
+                  <i class="el-icon-delete"></i>
                     删除
                 </el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination background layout="prev, pager, next" :page-size="4" :total=total @current-change="page">
+        <el-pagination background layout="prev, pager, next" :page-size="9" :total=total @current-change="page">
         </el-pagination>
     </div>
 </template>
@@ -78,7 +80,7 @@ export default {
         })
       },
       aditPost(noticeId){
-        
+        this.$router.push("/notice/aditNotice/"+noticeId)
       }
   },
   created(){

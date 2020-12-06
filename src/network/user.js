@@ -2,7 +2,7 @@ import {request} from "./request";
 
 function findAllUser(page){
     return request({
-        url:"/user/findAllUser/"+page+"/4"
+        url:"/user/findAllUser/"+page+"/9"
     })
 }
 function deleteUser(userId){
@@ -18,4 +18,9 @@ function addUser(data){
         data
     })
 }
-export {findAllUser,deleteUser,addUser}
+function findUser(userId){
+    return request({
+        url:"/user/findUser/"+userId
+    })
+}
+export {findAllUser,deleteUser,addUser,findUser}

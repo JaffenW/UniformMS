@@ -4,23 +4,27 @@ import VueRouter from 'vue-router'
 const Notice = () => import('views/notice/Notice')
 const NoticeShow = () => import('views/notice/NoticeShow')
 const AddNotice = () => import('views/notice/AddNotice')
+const AditNotice = () => import('views/notice/AditNotice')
 
 const Clothing = () => import('views/clothing/Clothing')
 const ClothingShow = () => import('views/clothing/ClothingShow')
 const AddClothing = () => import('views/clothing/AddClothing')
+const AditClothing = () => import('views/clothing/AditClothing')
 
 const Order = () => import('views/order/Order')
 const OrderShow = () => import('views/order/OrderShow')
 const AddOrder = () => import('views/order/AddOrder')
+const AditOrder = () => import('views/order/AditOrder')
 
 const Post = () => import('views/post/Post')
 const PostShow = () => import('views/post/PostShow')
 const AddPost = () => import('views/post/AddPost')
+const AditPost = () => import('views/post/AditPost')
 
 const User = () => import('views/user/User')
 const UserShow = () => import('views/user/UserShow')
 const AddUser = () => import('views/user/AddUser')
-
+const AditUser = () => import('views/user/AditUser')
 
 Vue.use(VueRouter)
 
@@ -46,6 +50,10 @@ const routes = [
       {
         path:'addNotice',
         component:AddNotice
+      },
+      {
+        path:'aditNotice/:id',
+        component:AditNotice
       }
     ]
   },
@@ -61,6 +69,10 @@ const routes = [
       {
         path:'AddClothing',
         component:AddClothing
+      },
+      {
+        path:'AditClothing/:id',
+        component:AditClothing
       }
     ]
   },
@@ -76,6 +88,10 @@ const routes = [
       {
         path:'AddOrder',
         component:AddOrder
+      },
+      {
+        path:'AditOrder/:id',
+        component:AditOrder
       }
     ]
 
@@ -92,6 +108,10 @@ const routes = [
       {
         path:'AddPost',
         component:AddPost
+      },
+      {
+        path:'AditPost/:id',
+        component:AditPost
       }
     ]
   },
@@ -107,6 +127,10 @@ const routes = [
       {
         path:'AddUser',
         component:AddUser
+      },
+      {
+        path:'AditUser/:id',
+        component:AditUser
       }
     ]
   }

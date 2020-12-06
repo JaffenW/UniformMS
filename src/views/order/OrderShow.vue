@@ -4,12 +4,12 @@
           <el-table-column
             prop="orderId"
             label="订单编号"
-            width="140">
+            width="120">
           </el-table-column>
           <el-table-column
             prop="cid"
             label="服装编号"
-            width="140">
+            width="120">
           </el-table-column>
           <el-table-column
             prop="owner"
@@ -24,7 +24,7 @@
           <el-table-column
             prop="date"
             label="订单日期"
-            width="140">
+            width="160">
           </el-table-column>
           <el-table-column
             prop="time"
@@ -48,9 +48,14 @@
           </el-table-column>
           <el-table-column
             label="操作"
-            width="140">
+            width="180">
             <template slot-scope="scope">
-              <el-button type="text" size="small" @click.native.prevent="deleteOrder(scope.row.orderId)">
+              <el-button size="small" @click.native.prevent="aditOrder(scope.row.orderId)">
+                <i class="el-icon-edit"></i>
+                编辑
+            </el-button>
+              <el-button type="danger" size="small" @click.native.prevent="deleteOrder(scope.row.orderId)">
+                <i class="el-icon-delete"></i>
                 删除
               </el-button>
             </template>
@@ -59,7 +64,7 @@
         <el-pagination
           background
           layout="prev, pager, next"
-          :page-size="4"
+          :page-size="9"
           :total=total
           @current-change="page">
         </el-pagination>
@@ -103,6 +108,9 @@ export default {
             message: '已取消删除'
           });          
         });
+      },
+    aditOrder(orderId){
+        this.$router.push("/order/aditOrder/"+orderId)
       }
   },
   

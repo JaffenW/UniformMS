@@ -40,7 +40,12 @@
         label="操作"
         width="178">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click.native.prevent="deleteU(scope.row.userId)">
+          <el-button size="small" @click.native.prevent="aditUser(scope.row.userId)">
+            <i class="el-icon-edit"></i>
+                编辑
+            </el-button>
+          <el-button type="danger" size="small" @click.native.prevent="deleteU(scope.row.userId)">
+            <i class="el-icon-delete"></i>
             删除
           </el-button>
         </template>
@@ -50,7 +55,7 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :page-size="4"
+      :page-size="9"
       :total=total
       @current-change="page">
     </el-pagination>
@@ -102,7 +107,10 @@ export default {
               message: '已取消删除'
             });          
           });
-        }
+        },
+      aditUser(userId){
+        this.$router.push("/user/aditUser/"+userId)
+      }
     },
   
   created(){

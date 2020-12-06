@@ -30,14 +30,19 @@
           label="操作"
           width="237">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click.native.prevent="deleteClothes(scope.row.clothesId)">
+            <el-button size="small" @click.native.prevent="aditClothing(scope.row.clothesId)">
+              <i class="el-icon-edit"></i>
+                编辑
+            </el-button>
+            <el-button type="danger" size="small" @click.native.prevent="deleteClothes(scope.row.clothesId)">
+              <i class="el-icon-delete"></i>
               删除
             </el-button>
           </template>
           
         </el-table-column>
       </el-table>
-      <el-pagination  background  layout="prev, pager, next"  :page-size="4"  :total=total  @current-change="page">
+      <el-pagination  background  layout="prev, pager, next"  :page-size="9"  :total=total  @current-change="page">
       </el-pagination>
     </div>
 </template>
@@ -78,6 +83,9 @@ export default {
             message: '已取消删除'
           });          
         });
+      },
+      aditClothing(clothingId){
+        this.$router.push("/clothing/aditClothing/"+clothingId)
       }
   },
   created(){

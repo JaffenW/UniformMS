@@ -2,7 +2,7 @@ import {request} from "./request";
 
 function findAllPosts(page){
     return request({
-        url:"/post/findAllPosts/"+page+"/4"
+        url:"/post/findAllPosts/"+page+"/9"
     })
 }
 function deletePost(postId){
@@ -18,4 +18,9 @@ function addPost(data){
         data
     })
 }
-export {findAllPosts,deletePost,addPost}
+function findPost(postId){
+    return request({
+        url:"/post/findPost/"+postId
+    })
+}
+export {findAllPosts,deletePost,addPost,findPost}
