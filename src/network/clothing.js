@@ -2,7 +2,7 @@ import {request} from "./request";
 
 function findAllClothes(page){
     return request({
-        url:"/clothing/findAllClothing/"+page+"/9"
+        url:"/clothing/findAllClothing/"+page+"/8"
     })
 }
 
@@ -22,4 +22,9 @@ function findClothes(clothingId){
         url:"/clothing/findClothing/"+clothingId
     })
 }
-export {findAllClothes,deleteClothing,addClothing,findClothes}
+function searchClothes(data){
+    return request({
+        url:"/clothing/searchClothes/"+data.type+"/"+data.owner
+    })
+}
+export {findAllClothes,deleteClothing,addClothing,findClothes,searchClothes}

@@ -1,6 +1,17 @@
 <template>
     <div>
-        <el-table :data="orders" stripe style="width: 100%">
+        <el-form :inline="true" :model="searchItem" class="demo-form-inline" label-position="right" label-width="100px">
+          <el-form-item label="开始日">
+            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.start" style="width: 100%;"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="结束日">
+            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.end" style="width: 100%;"></el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+          </el-form-item>
+        </el-form>
+        <el-table :data="orders" stripe style="width: 100%"  :header-cell-style="headstyle">
           <el-table-column
             prop="orderId"
             label="订单编号"
@@ -64,7 +75,7 @@
         <el-pagination
           background
           layout="prev, pager, next"
-          :page-size="9"
+          :page-size="7"
           :total=total
           @current-change="page">
         </el-pagination>
@@ -72,13 +83,20 @@
 </template>
 
 <script>
-import {findAllOrder,deleteOrder} from "network/order";
+import {findAllOrder,deleteOrder,searchOrders} from "network/order";
 
 export default {
   data () {
     return {
       orders:[],
       total:null,
+      headstyle:{
+          background:"rgb(242,242,242)"
+        },
+      searchItem:{
+          start:'',
+          end:''
+        }
     };
   },
   methods:{
@@ -111,7 +129,14 @@ export default {
       },
     aditOrder(orderId){
         this.$router.push("/order/aditOrder/"+orderId)
-      }
+      },
+    onSearch(){
+      console.log(this.searchItem)
+      searchOrders(this.searchItem).then(res =>{
+        console.log(res);
+        this.orders = res;
+      })
+    }
   },
   
   created(){
@@ -122,5 +147,9 @@ export default {
   },
 }
 </script>
-<style lang='scss' scoped>
+<style scoped>
+.demo-form-inline{
+  padding-top:5px;
+  height: 50px;
+}
 </style>

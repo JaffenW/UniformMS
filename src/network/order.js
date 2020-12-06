@@ -2,7 +2,7 @@ import {request} from "./request";
 
 function findAllOrder(page){
     return request({
-        url:"/order/findAllOrder/"+page+"/9",
+        url:"/order/findAllOrder/"+page+"/7",
     })
 }
 function deleteOrder(orderId){
@@ -23,4 +23,9 @@ function findOrder(orderId){
         url:"/order/findOrder/"+orderId,
     })
 }
-export {findAllOrder,deleteOrder,addOrder,findOrder}
+function searchOrders(data){
+    return request({
+        url:"/order/searchOrders/"+data.start+"/"+data.end,
+    })
+}
+export {findAllOrder,deleteOrder,addOrder,findOrder,searchOrders}

@@ -1,15 +1,15 @@
 <template>
   <el-form class="el-form" ref="form" :model="user" label-width="500px" label-position="auto">
-    <el-form-item label="账户">
+    <el-form-item label="账户" prop="userId">
       <el-input v-model="user.userId"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
+    <el-form-item label="密码" prop="password">
       <el-input v-model="user.password"></el-input>
     </el-form-item>
-    <el-form-item label="姓名">
+    <el-form-item label="姓名" prop="username">
       <el-input v-model="user.username"></el-input>
     </el-form-item>
-    <el-form-item label="性别">
+    <el-form-item label="性别" prop="gender">
       <el-select class="el-select" v-model="user.gender" placeholder="请选择">
         <el-option key="男" value="男">
         </el-option>
@@ -19,7 +19,7 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="角色">
+    <el-form-item label="角色" prop="role">
       <el-select class="el-select" v-model="user.role" placeholder="请选择">
         <el-option key="normal" value="normal">
         </el-option>
@@ -27,15 +27,15 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="身高">
+    <el-form-item label="身高" prop="height">
       <el-input v-model="user.height"></el-input>
     </el-form-item>
-    <el-form-item label="体重">
+    <el-form-item label="体重" prop="weight">
       <el-input v-model="user.weight"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="resetForm('form')">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -66,6 +66,9 @@
           });
         })
         console.log(this.user);
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
   }

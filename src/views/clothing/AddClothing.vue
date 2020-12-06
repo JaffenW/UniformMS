@@ -1,6 +1,6 @@
 <template>
   <el-form class="el-form" ref="form" :model="clothes" label-width="500px" label-position="auto">
-    <el-form-item label="服装类型">
+    <el-form-item label="服装类型" prop="type">
       <el-select class="el-select" v-model="clothes.type" placeholder="请选择">
         <el-option
           v-for="item in types"
@@ -9,18 +9,18 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item  label="服装描述">
+    <el-form-item  label="服装描述" prop="description">
       <el-input type="textarea" v-model="clothes.description"></el-input>
     </el-form-item>
-    <el-form-item label="租金">
+    <el-form-item label="租金" prop="rent">
       <el-input v-model="clothes.rent"></el-input>
     </el-form-item>
-    <el-form-item label="所有者">
+    <el-form-item label="所有者" prop="belong">
       <el-input v-model="clothes.belong"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="resetForm('form')">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -62,6 +62,9 @@
           });
         })
         console.log(this.clothes);
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
 

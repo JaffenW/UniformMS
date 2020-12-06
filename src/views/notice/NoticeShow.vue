@@ -1,6 +1,20 @@
 <template>
     <div>
-        <el-table :data="notices" stripe style="width: 100%">
+        <el-form :inline="true" :model="searchItem" class="demo-form-inline" label-position="right" label-width="100px">
+          <el-form-item label="标题">
+            <el-input v-model="searchItem.title" placeholder="请输入公告标题"></el-input>
+          </el-form-item>
+          <el-form-item label="开始日">
+            <el-date-picker type="date" placeholder="请选择发布日期" v-model="searchItem.start" style="width: 100%;"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="结束日">
+            <el-date-picker type="date" placeholder="请选择发布日期" v-model="searchItem.end" style="width: 100%;"></el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+          </el-form-item>
+        </el-form>
+        <el-table :data="notices" stripe :header-cell-style="headstyle">
             <el-table-column
                 prop="announcementId"
                 label="公告编号"
@@ -36,18 +50,26 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination background layout="prev, pager, next" :page-size="9" :total=total @current-change="page">
+        <el-pagination background layout="prev, pager, next" :page-size="8" :total=total @current-change="page">
         </el-pagination>
     </div>
 </template>
 
 <script>
-import {findAllNotices,deleteNotice} from "network/notice";
+import {findAllNotices,deleteNotice,searchNotices} from "network/notice";
 export default {
   data () {
     return {
         notices:[],
-        total:null
+        total:null,
+        headstyle:{
+          background:"rgb(242,242,242)"
+        },
+        searchItem:{
+          title:'',
+          start:'',
+          end:''
+        }
     };
   },
 
@@ -81,6 +103,12 @@ export default {
       },
       aditPost(noticeId){
         this.$router.push("/notice/aditNotice/"+noticeId)
+      },
+      onSearch(){
+        searchNotices(this.searchItem).then(res =>{
+          console.log(res);
+          this.notices = res;
+        })
       }
   },
   created(){
@@ -92,5 +120,9 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style scoped>
+.demo-form-inline{
+  padding-top:5px;
+  height: 50px;
+}
 </style>

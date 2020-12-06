@@ -1,6 +1,23 @@
 <template>
     <div>
-      <el-table :data="clothes" stripe style="width: 100%">
+      <el-form :inline="true" :model="searchItems" class="demo-form-inline" label-position="right" label-width="100px">
+          <el-form-item label="服装类型">
+            <el-select class="el-select" v-model="searchItems.type" placeholder="请选择服装类型">
+              <el-option
+                v-for="item in types"
+                :key="item.value" 
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="所有者">
+            <el-input v-model="searchItems.owner" placeholder="请输入服装所有者账号"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+          </el-form-item>
+      </el-form>
+      <el-table :data="clothes" stripe style="width: 100%"  :header-cell-style="headstyle">
         <el-table-column
           prop="clothesId"
           label="服装编号"
@@ -42,18 +59,39 @@
           
         </el-table-column>
       </el-table>
-      <el-pagination  background  layout="prev, pager, next"  :page-size="9"  :total=total  @current-change="page">
+      <el-pagination  background  layout="prev, pager, next"  :page-size="8"  :total=total  @current-change="page">
       </el-pagination>
     </div>
 </template>
 
 <script>
-import {findAllClothes,deleteClothes} from "network/clothing";
+import {findAllClothes,deleteClothes,searchClothes} from "network/clothing";
 export default {
   data () {
     return {
         clothes:[],
-      total:null,
+        total:null,
+        headstyle:{
+          background:"rgb(242,242,242)"
+        },
+        types:[
+          {
+            value:'西装'
+          },
+          {
+            value:'礼裙'
+          },
+          {
+            value:'运动装'
+          },
+          {
+            value:'休闲装'
+          }
+        ],
+        searchItems:{
+          type:'',
+          owner:''
+        },
     };
   },
 
@@ -86,6 +124,13 @@ export default {
       },
       aditClothing(clothingId){
         this.$router.push("/clothing/aditClothing/"+clothingId)
+      },
+      onSearch(){
+        console.log(this.searchItems)
+        searchClothes(this.searchItems).then(res =>{
+          console.log(res);
+          // this.clothes = res;
+        })
       }
   },
   created(){
@@ -97,5 +142,9 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style scoped>
+.demo-form-inline{
+  padding-top:5px;
+  height: 50px;
+}
 </style>

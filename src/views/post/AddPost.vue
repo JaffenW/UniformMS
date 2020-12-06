@@ -1,17 +1,17 @@
 <template>
   <el-form class="el-form" ref="form" :model="post" label-width="500px" label-position="auto">
-    <el-form-item label="帖子标题">
+    <el-form-item label="帖子标题" prop="title">
       <el-input v-model="post.title"></el-input>
     </el-form-item>
-    <el-form-item  label="内容">
+    <el-form-item  label="内容" prop="content">
       <el-input type="textarea" v-model="post.content"></el-input>
     </el-form-item>
-    <el-form-item label="发帖人">
+    <el-form-item label="发帖人" prop="uid">
       <el-input v-model="post.uid"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="resetForm('form')">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -38,6 +38,9 @@
           });
         })
         console.log(this.post);
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
   }

@@ -2,7 +2,7 @@ import {request} from "./request";
 
 function findAllNotices(page){
     return request({
-        url:"/announcement/findAllAnnouncement/"+page+"/9"
+        url:"/announcement/findAllAnnouncement/"+page+"/8"
     })
 }
 function findNotice(noticeId){
@@ -23,4 +23,9 @@ function saveNotice(data){
         data
     })
 }
-export {findAllNotices,findNotice,deleteNotice,saveNotice}
+function searchNotices(data){
+    return request({
+        url:"/announcement/searchAnnouncements/"+data.title+"/"+data.start+"/"+data.end,
+    })
+}
+export {findAllNotices,findNotice,deleteNotice,saveNotice,searchNotices}

@@ -1,14 +1,14 @@
 <template>
   <el-form class="el-form" ref="form" :model="notice" label-width="500px" label-position="auto">
-    <el-form-item class="item-title" label="标题">
+    <el-form-item class="item-title" label="标题" prop="title">
       <el-input v-model="notice.title"></el-input>
     </el-form-item>
-    <el-form-item  label="内容">
+    <el-form-item  label="内容" prop="content">
       <el-input type="textarea" v-model="notice.content"  class="item-content"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="resetForm('form')">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -34,6 +34,9 @@
           });
         })
         console.log(this.notice);
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
   }
