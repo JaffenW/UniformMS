@@ -2,10 +2,12 @@
     <div>
         <el-form :inline="true" :model="searchItem" class="demo-form-inline" label-position="right" label-width="100px">
           <el-form-item label="开始日">
-            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.start" style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.start" style="width: 100%;" value-format=" yyyy-MM-dd HH:mm" 
+              format="yyyy-MM-dd HH:mm"></el-date-picker>
           </el-form-item>
           <el-form-item label="结束日">
-            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.end" style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="请选择订单日期" v-model="searchItem.end" style="width: 100%;" value-format=" yyyy-MM-dd HH:mm" 
+              format="yyyy-MM-dd HH:mm"></el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSearch">查询</el-button>
@@ -99,6 +101,7 @@ export default {
         }
     };
   },
+  
   methods:{
     page(currentPage){
       findAllOrder(currentPage).then(res => {

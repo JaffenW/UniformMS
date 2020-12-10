@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import {findAllClothes,deleteClothes,searchClothes} from "network/clothing";
+import {findAllClothes,deleteClothing,searchClothes} from "network/clothing";
 export default {
   data () {
     return {
@@ -102,6 +102,7 @@ export default {
         })
       },
       deleteClothes(clothesId) {
+        console.log(clothesId);
         this.$confirm('你是否要删除Id为'+clothesId+'的服装?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -115,10 +116,11 @@ export default {
           window.location.reload;
           console.log(res);
         }) 
-        }).catch(() => {
+        }).catch((error) => {
+          console.log(error)
           this.$message({
             type: 'info',
-            message: '已取消删除'
+            message: '该服装有未完成的业务操作'
           });          
         });
       },
@@ -129,10 +131,11 @@ export default {
         console.log(this.searchItems)
         searchClothes(this.searchItems).then(res =>{
           console.log(res);
-          // this.clothes = res;
+          this.clothes = res;
         })
       }
   },
+  
   created(){
     findAllClothes(1).then(res => {
       this.clothes = res.content;

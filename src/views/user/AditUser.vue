@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import {addUser,findUser} from "network/user"
+  import {modifyUser,findUser} from "network/user"
   export default {
     data() {
       return {
@@ -53,16 +53,18 @@
           role:'',
           height:'',
           weight: '',
+          address:'',
+          phone:''
         }
       }
     },
     methods: {
       onSubmit() {
-        addUser(this.user).then(res =>{
+        modifyUser(this.user).then(res =>{
           console.log(res);
           this.$message({
             type: 'success',
-            message: '添加成功!'
+            message: '修改成功!'
           });
         })
         console.log(this.user);

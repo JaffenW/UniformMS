@@ -53,6 +53,8 @@
           role:'',
           height:'',
           weight: '',
+          address:'无',
+          phone:'无'
         }
       }
     },

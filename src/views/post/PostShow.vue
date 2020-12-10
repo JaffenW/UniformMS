@@ -8,10 +8,12 @@
             <el-input v-model="searchItem.title" placeholder="请输入帖子标题"></el-input>
           </el-form-item>
           <el-form-item label="开始日">
-            <el-date-picker type="date" placeholder="请选择发帖日期" v-model="searchItem.start" style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="请选择发帖日期" v-model="searchItem.start" style="width: 100%;" value-format=" yyyy-MM-dd HH:mm" 
+              format="yyyy-MM-dd HH:mm"></el-date-picker>
           </el-form-item>
           <el-form-item label="结束日">
-            <el-date-picker type="date" placeholder="请选择发帖日期" v-model="searchItem.end" style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="请选择发帖日期" v-model="searchItem.end" style="width: 100%;" value-format=" yyyy-MM-dd HH:mm" 
+              format="yyyy-MM-dd HH:mm"></el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSearch">查询</el-button>
@@ -70,7 +72,7 @@
 </template>
 
 <script>
-import {findAllPosts,deletePost} from "network/post";
+import {findAllPosts,deletePost,searchPosts} from "network/post";
 
 export default {
   data () {
@@ -119,7 +121,7 @@ export default {
         this.$router.push("/post/aditPost/"+postId)
       },
       onSearch(){
-        searchNotices(this.searchItem).then(res =>{
+        searchPosts(this.searchItem).then(res =>{
           console.log(res);
           this.posts = res;
         })

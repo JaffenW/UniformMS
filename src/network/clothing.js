@@ -11,10 +11,17 @@ function deleteClothing(clothesId){
         url:"/clothing/deleteClothing/"+clothesId
     })
 }
+// function addClothing(data){
+//     return request({
+//         url:"/clothing/addClothing?belong="+data.belong+"&description="+data.description+"&rent="+data.rent+"&type="+data.type,
+//         method:"post"
+//     })
+// }
 function addClothing(data){
     return request({
-        url:"/clothing/addClothing?belong="+data.belong+"&description="+data.description+"&rent="+data.rent+"&type="+data.type,
-        method:"post"
+        url:"/clothing/addClothing",
+        method:"post",
+        data
     })
 }
 function findClothes(clothingId){

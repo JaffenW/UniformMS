@@ -85,10 +85,17 @@ export default {
       },
       searchItems:{
           userId:'',
-          username:''
+          userName:'',
+          password:'',
+          role:'',
+          gender:'',
+          height:0,
+          weight:0,
+          registDate:''
       },
     };
   },
+  
   methods: {
       deleteRow(index, rows) {
         rows.splice(index, 1);
@@ -109,7 +116,7 @@ export default {
               if(res == undefined){
                 this.$message({
                   type: 'info',
-                  message: '该用户有未完成的订单，不能删除!'
+                  message: '该用户有未完成的业务操作!'
               });
               }else{
                 this.$message({

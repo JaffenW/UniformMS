@@ -11,11 +11,17 @@ function deleteUser(userId){
         method:"delete"
     })
 }
-function addUser(data){
+// function modifyUser(data){
+//     return request({
+//         url:"/user/modifyUserInfo",
+//         method:"post",
+//         data
+//     })
+// }
+function modifyUser(data){
     return request({
-        url:"/user/saveUser",
+        url:"/user/modifyUserInfo?userName="+data.userName+"&userId="+data.userId+"&height="+data.height+"&weight="+data.weight+"&gender="+data.gender+"&password="+data.password+"&role="+data.role+"&address="+data.address+"&phone="+data.phone,
         method:"post",
-        data
     })
 }
 function findUser(userId){
@@ -25,7 +31,9 @@ function findUser(userId){
 }
 function searchUsers(data){
     return request({
-        url:"/user/searchUsers/"+data.userId+"/"+data.username
+        url:"/user/searchUsers",
+        method:'post',
+        data
     })
 }
-export {findAllUser,deleteUser,addUser,findUser,searchUsers}
+export {findAllUser,deleteUser,modifyUser,findUser,searchUsers}

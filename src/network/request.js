@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Vue from 'vue'
 
 export function request(config) {
   // 1.创建axios的实例
@@ -7,10 +6,11 @@ export function request(config) {
     // baseURL: 'http://wanxiang.test.utools.club',
     // baseURL: 'http://jaffen.test.utools.club',
     // baseURL: 'http://wjfeng.test.utools.club',
-    // baseURL: 'http://jaffen.cn.utools.club',
+    // baseURL:'http://wjinfeng.cn.utools.club',
+    baseURL: 'http://jaffen.cn.utools.club',
     // baseURL: 'http://jaffen.hk.utools.club',
-    baseURL:'http://localhost:8181',
-    timeout: 5000
+    // baseURL:'http://localhost:8181',
+    timeout: 10000
   })
   // 2.axios的拦截器
   // 2.1.请求拦截的作用
